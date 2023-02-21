@@ -3,7 +3,7 @@
 using namespace std;
 
 /**
- *
+ * @brief
  */
 SqlConnPool::SqlConnPool() {
     useCount_ = 0;
@@ -11,7 +11,7 @@ SqlConnPool::SqlConnPool() {
 }
 
 /**
- *
+ * @brief
  * @return
  */
 SqlConnPool *SqlConnPool::Instance() {
@@ -20,7 +20,7 @@ SqlConnPool *SqlConnPool::Instance() {
 }
 
 /**
- * 数据库连接池的初始化函数
+ * @brief 数据库连接池的初始化函数
  * @param host
  * @param port
  * @param user
@@ -55,7 +55,7 @@ void SqlConnPool::Init(const char *host, int port,
 }
 
 /**
- * 从数据库连接池中获取一个连接
+ * @brief 从数据库连接池中获取一个连接
  * 多线程访问连接池时存在并发问题，因此使用信号量和互斥锁保证线程安全
  * @return
  */
@@ -81,7 +81,7 @@ MYSQL *SqlConnPool::GetConn() {
 }
 
 /**
- * 将一个已经使用完的MySQL连接放回连接池
+ * @brief 将一个已经使用完的MySQL连接放回连接池
  * @param sql
  */
 void SqlConnPool::FreeConn(MYSQL *sql) {
@@ -94,7 +94,7 @@ void SqlConnPool::FreeConn(MYSQL *sql) {
 }
 
 /**
- * 实现关闭连接池
+ * @brief 实现关闭连接池
  */
 void SqlConnPool::ClosePool() {
     //获取互斥锁
@@ -111,7 +111,7 @@ void SqlConnPool::ClosePool() {
 }
 
 /**
- * 获取当前连接池中可用的连接数,没用修改操作
+ * @brief 获取当前连接池中可用的连接数,没用修改操作
  * 使用了 lock_guard 这种自动加锁的方式保证了线程安全
  * @return
  */

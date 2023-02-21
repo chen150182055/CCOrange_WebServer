@@ -1,11 +1,11 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 
-#include <cstring>   //perror
+#include <cstring>      //perror
 #include <iostream>
-#include <unistd.h>  // write
-#include <sys/uio.h> //readv
-#include <vector> //readv
+#include <unistd.h>     // write
+#include <sys/uio.h>    //readv
+#include <vector>       //readv
 #include <atomic>
 #include <assert.h>
 
@@ -53,15 +53,16 @@ public:
     ssize_t WriteFd(int fd, int *Errno);
 
 private:
-    char *BeginPtr_();
+    //这两个方法一个是常量成员函数，一个是非常量成员函数，因此分别用于常量对象和非常量对象调用
+    char *BeginPtr_();              //返回缓存的起始位置（写入位置）的指针
 
-    const char *BeginPtr_() const;
+    const char *BeginPtr_() const;  //返回缓存的起始位置（写入位置）的指针
 
-    void MakeSpace_(size_t len);
+    void MakeSpace_(size_t len);    //为缓存中的数据腾出足够的空间，以便在缓存中写入更多的数据
 
-    std::vector<char> buffer_;
-    std::atomic <std::size_t> readPos_;
-    std::atomic <std::size_t> writePos_;
+    std::vector<char> buffer_;          //存储缓存中的数据
+    std::atomic <std::size_t> readPos_; //记录缓存中已读的数据的位置
+    std::atomic <std::size_t> writePos_;//记录缓存中已写的数据的位置
 };
 
 #endif //BUFFER_H

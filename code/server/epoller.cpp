@@ -1,7 +1,7 @@
 #include "epoller.h"
 
 /**
- * 构造函数,创建一个Epoller对象
+ * @brief 构造函数,创建一个Epoller对象
  * @param maxEvent 最多管理的事件数
  */
 Epoller::Epoller(int maxEvent) : epollFd_(epoll_create(512)), events_(maxEvent) {
@@ -10,14 +10,14 @@ Epoller::Epoller(int maxEvent) : epollFd_(epoll_create(512)), events_(maxEvent) 
 }
 
 /**
- * 析构函数,关闭epollFd_
+ * @brief 析构函数,关闭epollFd_
  */
 Epoller::~Epoller() {
     close(epollFd_);
 }
 
 /**
- * 添加一个新的文件描述符到epoll实例中
+ * @brief 添加一个新的文件描述符到epoll实例中
  * @param fd
  * @param events
  * @return
@@ -33,7 +33,7 @@ bool Epoller::AddFd(int fd, uint32_t events) {
 }
 
 /**
- * 修改epoll监听的文件描述符fd
+ * @brief 修改epoll监听的文件描述符fd
  * @param fd
  * @param events
  * @return
@@ -48,7 +48,7 @@ bool Epoller::ModFd(int fd, uint32_t events) {
 }
 
 /**
- * 从epoll中删除指定的文件描述符
+ * @brief 从epoll中删除指定的文件描述符
  * @param fd
  * @return
  */
@@ -60,7 +60,7 @@ bool Epoller::DelFd(int fd) {
 }
 
 /**
- * 等待与监听的socket上有事件发生,返回发生事件的数量
+ * @brief 等待与监听的socket上有事件发生,返回发生事件的数量
  * @param timeoutMs
  * @return
  */
@@ -69,7 +69,7 @@ int Epoller::Wait(int timeoutMs) {
 }
 
 /**
- * 从events_中获取索引i指定的事件的文件描述符
+ * @brief 从events_中获取索引i指定的事件的文件描述符
  * @param i
  * @return
  */
@@ -79,7 +79,7 @@ int Epoller::GetEventFd(size_t i) const {
 }
 
 /**
- * 获取索引i指定的事件集合
+ * @brief 获取索引i指定的事件集合
  * @param i 必须大于等于0且小于events_size()
  * @return
  */

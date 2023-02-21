@@ -26,10 +26,9 @@ WebServer::WebServer(
         bool openLog, int logLevel, int logQueSize) :
         port_(port), openLinger_(OptLinger), timeoutMS_(timeoutMS), isClose_(false),
         timer_(new HeapTimer()), threadpool_(new ThreadPool(threadNum)), epoller_(new Epoller()) {
-    srcDir_ = getcwd(nullptr, 256);
-    chdir("..");
-    srcDir_ = getcwd(nullptr, 256);
+    chdir("..");    //切换到上一级目录
     //srcDir_保存资源文件的路径,使用getcwd()函数获取当前工作目录
+    srcDir_ = getcwd(nullptr, 256);
     assert(srcDir_);
     strncat(srcDir_, "/staticResources/", 16);
     HttpConn::userCount = 0;

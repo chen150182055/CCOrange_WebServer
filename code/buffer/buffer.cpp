@@ -11,7 +11,7 @@ Buffer::Buffer(int initBuffSize) : buffer_(initBuffSize), readPos_(0), writePos_
  * @return
  */
 size_t Buffer::ReadableBytes() const {
-    //其中writePos_为Buffer中最后一个可写字节的下一个位置，
+    // 其中writePos_为Buffer中最后一个可写字节的下一个位置，
     // readPos_为Buffer中最后一个可读字节的下一个位置，
     // 因此可读字节数等于writePos_减去readPos_
     return writePos_ - readPos_;
@@ -238,7 +238,7 @@ char *Buffer::BeginPtr_() {
 }
 
 /**
- *
+ * @brief
  * @return
  */
 const char *Buffer::BeginPtr_() const {
