@@ -23,9 +23,7 @@ set(SRCS
         timer/heaptimer.cpp
         timer/heaptimer.h
         )
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/..")
-find_package(Threads REQUIRED)
-find_package(MYSQL REQUIRED)
+
 add_executable(server ${SRCS})
 target_link_libraries(server
         pthread

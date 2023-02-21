@@ -41,18 +41,18 @@ private:
 
     std::string GetFileType_();
 
-    int code_;
-    bool isKeepAlive_;
+    int code_;              //HTTP状态码
+    bool isKeepAlive_;      //是否保持连接
 
-    std::string path_;
-    std::string srcDir_;
+    std::string path_;      //请求资源路径
+    std::string srcDir_;    //静态资源目录
 
-    char *mmFile_;
-    struct stat mmFileStat_;
+    char *mmFile_;          //映射的文件指针
+    struct stat mmFileStat_;//映射文件的stat结构体
 
-    static const std::unordered_map <std::string, std::string> SUFFIX_TYPE;
-    static const std::unordered_map<int, std::string> CODE_STATUS;
-    static const std::unordered_map<int, std::string> CODE_PATH;
+    static const std::unordered_map <std::string, std::string> SUFFIX_TYPE;     //文件后缀与Content-Type的对应关系
+    static const std::unordered_map<int, std::string> CODE_STATUS;              //HTTP状态码与状态文本的对应关系
+    static const std::unordered_map<int, std::string> CODE_PATH;                //HTTP状态码与错误页面路径的对应关系
 };
 
 
