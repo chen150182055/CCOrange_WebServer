@@ -3,7 +3,7 @@
 using namespace std;
 
 /**
- * @brief
+ * @brief 构造函数
  */
 SqlConnPool::SqlConnPool() {
     useCount_ = 0;

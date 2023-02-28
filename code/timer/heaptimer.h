@@ -59,9 +59,9 @@ private:
 
     void SwapNode_(size_t i, size_t j);
 
-    std::vector <TimerNode> heap_;
+    std::vector <TimerNode> heap_;          //用于存储 TimerNode 类型的元素,TimerNode 包含 id、到期时间 expires 和回调函数 cb
 
-    std::unordered_map<int, size_t> ref_;
+    std::unordered_map<int, size_t> ref_;   //表示 id 和其在堆中的索引之间的映射关系
 };
 
 #endif //HEAP_TIMER_H

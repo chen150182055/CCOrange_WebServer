@@ -62,20 +62,20 @@ private:
 
     static int SetFdNonblock(int fd);
 
-    int port_;
-    bool openLinger_;
-    int timeoutMS_;  /* 毫秒MS */
-    bool isClose_;
-    int listenFd_;
-    char *srcDir_;
+    int port_;        //表示服务器监听的端口号
+    bool openLinger_; //表示是否开启优雅关闭连接
+    int timeoutMS_;   //表示客户端连接的超时时间（毫秒）
+    bool isClose_;    //表示服务器是否关闭
+    int listenFd_;    //表示服务器监听 socket 的文件描述符
+    char *srcDir_;    //表示服务器资源目录
 
-    uint32_t listenEvent_;
-    uint32_t connEvent_;
+    uint32_t listenEvent_;  //表示 epoll 监听的事件类型
+    uint32_t connEvent_;    //表示客户端连接的事件类型
 
-    std::unique_ptr <HeapTimer> timer_;
-    std::unique_ptr <ThreadPool> threadpool_;
-    std::unique_ptr <Epoller> epoller_;
-    std::unordered_map<int, HttpConn> users_;
+    std::unique_ptr <HeapTimer> timer_;         //表示 Web 服务器使用的定时器，用于超时检测
+    std::unique_ptr <ThreadPool> threadpool_;   //表示 Web 服务器使用的线程池，用于处理客户端请求
+    std::unique_ptr <Epoller> epoller_;         //表示 Web 服务器使用的 epoll 实例，用于监听和处理事件
+    std::unordered_map<int, HttpConn> users_;   //表示当前所有的客户端连接，其中键为文件描述符，值为 HttpConn 类型的对象
 };
 
 

@@ -36,7 +36,7 @@ bool HttpRequest::IsKeepAlive() const {
 }
 
 /**
- * @brief  HTTP 请求的解析函数
+ * @brief  HTTP 请求的解析函数（状态机）
  * @param buff Buffer 存放着接收到的 HTTP 请求数据
  * @return
  */

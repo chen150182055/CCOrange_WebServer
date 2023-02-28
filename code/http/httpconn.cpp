@@ -79,6 +79,7 @@ struct sockaddr_in HttpConn::GetAddr() const {
  * @return
  */
 const char *HttpConn::GetIP() const {
+    //inet_ntoa()函数将网络字节序的IP地址转换为点分十进制的字符串
     return inet_ntoa(addr_.sin_addr);
 }
 
@@ -175,7 +176,7 @@ bool HttpConn::process() {
         iov_[1].iov_len = response_.FileLen();
         iovCnt_ = 2;
     }
-    //7.大有服务器日志
+    //7.打印服务器日志
     LOG_DEBUG("filesize:%d, %d  to %d", response_.FileLen(), iovCnt_, ToWriteBytes());
     return true;
 }

@@ -27,8 +27,9 @@ public:
     uint32_t GetEvents(size_t i) const;
 
 private:
-    int epollFd_;
+    int epollFd_;   //表示 epoll 实例的文件描述符
 
+    //表示 epoll_wait() 返回的就绪事件数组，用于保存已经就绪的文件描述符和对应的事件类型
     std::vector<struct epoll_event> events_;
 };
 

@@ -30,13 +30,13 @@ private:
 
     ~SqlConnPool();
 
-    int MAX_CONN_;
-    int useCount_;
-    int freeCount_;
+    int MAX_CONN_;  //连接池中的最大连接数
+    int useCount_;  //连接池中已经被使用的连接数
+    int freeCount_; //连接池中当前可用的连接数
 
-    std::queue<MYSQL *> connQue_;
-    std::mutex mtx_;
-    sem_t semId_;
+    std::queue<MYSQL *> connQue_;   //存储可用连接的队列
+    std::mutex mtx_;//互斥锁，保证对连接池的操作是线程安全的
+    sem_t semId_;   //信号量，用于限制连接池中连接的个数
 };
 
 
